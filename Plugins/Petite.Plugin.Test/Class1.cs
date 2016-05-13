@@ -8,5 +8,6 @@ namespace Petite.Plugin.Test
 {
     public class Class1
     {
+        public Class1() { }
     }
 }
