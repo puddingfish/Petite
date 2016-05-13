@@ -9,19 +9,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{FC58
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{56F8F147-96FB-4958-9A07-BEAAD10B3C61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Services", "Petite.Services\Petite.Services.csproj", "{CE250F5E-4C63-4A61-AB20-840BE0406C38}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Services", "Libraries\Petite.Services\Petite.Services.csproj", "{CE250F5E-4C63-4A61-AB20-840BE0406C38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Core", "Petite.Core\Petite.Core.csproj", "{D08045B1-640A-4126-B9D7-813D950DE2AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Core", "Libraries\Petite.Core\Petite.Core.csproj", "{D08045B1-640A-4126-B9D7-813D950DE2AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Data", "Petite.EntityFramework\Petite.Data.csproj", "{B4F3544D-B99B-4319-AD86-11A8A63B5408}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Data", "Libraries\Petite.EntityFramework\Petite.Data.csproj", "{B4F3544D-B99B-4319-AD86-11A8A63B5408}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Web", "Petite.Web\Petite.Web.csproj", "{CF47EB54-9097-4E94-858E-B15840F470E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Web", "Presentation\Petite.Web\Petite.Web.csproj", "{CF47EB54-9097-4E94-858E-B15840F470E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Admin", "Petite.Web\Administration\Petite.Admin.csproj", "{37C137B0-09FD-41A1-81CC-9304767667DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Admin", "Presentation\Petite.Web\Administration\Petite.Admin.csproj", "{37C137B0-09FD-41A1-81CC-9304767667DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Web.Framework", "Petite.Web.Framework\Petite.Web.Framework.csproj", "{987BCA69-D569-4D4F-BA83-3B00F901FE5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Web.Framework", "Presentation\Petite.Web.Framework\Petite.Web.Framework.csproj", "{987BCA69-D569-4D4F-BA83-3B00F901FE5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Utils", "Petite.Utils\Petite.Utils.csproj", "{E2540CBA-0440-4544-A72F-B34E6D609000}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Utils", "Libraries\Petite.Utils\Petite.Utils.csproj", "{E2540CBA-0440-4544-A72F-B34E6D609000}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
