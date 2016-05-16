@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Utils", "Libraries\P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Test", "Plugins\Petite.Test\Petite.Test.csproj", "{2AE2A189-CC0E-4678-A88C-A10D0857EC0A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Misc", "Plugins\Petite.Misc\Petite.Misc.csproj", "{B6E6578D-E149-4103-BC6D-656A8A9EBEB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{2AE2A189-CC0E-4678-A88C-A10D0857EC0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AE2A189-CC0E-4678-A88C-A10D0857EC0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AE2A189-CC0E-4678-A88C-A10D0857EC0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6E6578D-E149-4103-BC6D-656A8A9EBEB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6E6578D-E149-4103-BC6D-656A8A9EBEB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6E6578D-E149-4103-BC6D-656A8A9EBEB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6E6578D-E149-4103-BC6D-656A8A9EBEB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,5 +82,6 @@ Global
 		{987BCA69-D569-4D4F-BA83-3B00F901FE5B} = {56F8F147-96FB-4958-9A07-BEAAD10B3C61}
 		{E2540CBA-0440-4544-A72F-B34E6D609000} = {B6A358A8-A6EB-4ED9-9FB4-DAA66C7C0AD9}
 		{2AE2A189-CC0E-4678-A88C-A10D0857EC0A} = {FC585882-E12B-4BE0-9925-1D89D65DE440}
+		{B6E6578D-E149-4103-BC6D-656A8A9EBEB1} = {FC585882-E12B-4BE0-9925-1D89D65DE440}
 	EndGlobalSection
 EndGlobal
