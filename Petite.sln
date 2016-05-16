@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{B6A358A8-A6EB-4ED9-9FB4-DAA66C7C0AD9}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Web.Framework", "Presentation\Petite.Web.Framework\Petite.Web.Framework.csproj", "{987BCA69-D569-4D4F-BA83-3B00F901FE5B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Utils", "Libraries\Petite.Utils\Petite.Utils.csproj", "{E2540CBA-0440-4544-A72F-B34E6D609000}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Petite.Plugin.Test", "Plugins\Petite.Plugin.Test\Petite.Plugin.Test.xproj", "{B48CC8BE-68EB-43D9-8264-29ECA8D5DBD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{E2540CBA-0440-4544-A72F-B34E6D609000}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2540CBA-0440-4544-A72F-B34E6D609000}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2540CBA-0440-4544-A72F-B34E6D609000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B48CC8BE-68EB-43D9-8264-29ECA8D5DBD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B48CC8BE-68EB-43D9-8264-29ECA8D5DBD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B48CC8BE-68EB-43D9-8264-29ECA8D5DBD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B48CC8BE-68EB-43D9-8264-29ECA8D5DBD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,5 +75,6 @@ Global
 		{37C137B0-09FD-41A1-81CC-9304767667DD} = {56F8F147-96FB-4958-9A07-BEAAD10B3C61}
 		{987BCA69-D569-4D4F-BA83-3B00F901FE5B} = {56F8F147-96FB-4958-9A07-BEAAD10B3C61}
 		{E2540CBA-0440-4544-A72F-B34E6D609000} = {B6A358A8-A6EB-4ED9-9FB4-DAA66C7C0AD9}
+		{B48CC8BE-68EB-43D9-8264-29ECA8D5DBD2} = {FC585882-E12B-4BE0-9925-1D89D65DE440}
 	EndGlobalSection
 EndGlobal
