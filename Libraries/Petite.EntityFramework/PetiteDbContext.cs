@@ -53,29 +53,7 @@ namespace Petite.Data
 
             base.OnModelCreating(modelBuilder);
         }
-
-        /// <summary>
-        /// Attach an entity to the context or return an already attached entity (if it was already attached)
-        /// </summary>
-        /// <typeparam name="TEntity">TEntity</typeparam>
-        /// <param name="entity">Entity</param>
-        /// <returns>Attached entity</returns>
-        protected virtual TEntity AttachEntityToContext<TEntity,TPrimaryKey>(TEntity entity) where TEntity : class,IEntity<TPrimaryKey>
-        {
-            //little hack here until Entity Framework really supports stored procedures
-            //otherwise, navigation properties of loaded entities are not loaded until an entity is attached to the context
-            var alreadyAttached = Set<TEntity,TPrimaryKey>().Local.FirstOrDefault(x => x.Id == entity.Id);
-            if (alreadyAttached == null)
-            {
-                //attach new entity
-                Set<TEntity>().Attach(entity);
-                return entity;
-            }
-
-            //entity is already loaded
-            return alreadyAttached;
-        }
-
+              
         #endregion
 
         #region Methods
@@ -97,54 +75,6 @@ namespace Petite.Data
         public IDbSet<TEntity> Set<TEntity,TPrimaryKey>() where TEntity : class,IEntity<TPrimaryKey>
         {
             return base.Set<TEntity>();
-        }
-
-        /// <summary>
-        /// Execute stores procedure and load a list of entities at the end
-        /// </summary>
-        /// <typeparam name="TEntity">Entity type</typeparam>
-        /// <param name="commandText">Command text</param>
-        /// <param name="parameters">Parameters</param>
-        /// <returns>Entities</returns>
-        public IList<TEntity> ExecuteStoredProcedureList<TEntity,TPrimaryKey>(string commandText, params object[] parameters) where TEntity : class,IEntity<TPrimaryKey>
-        {
-            //add parameters to command
-            if (parameters != null && parameters.Length > 0)
-            {
-                for (int i = 0; i <= parameters.Length - 1; i++)
-                {
-                    var p = parameters[i] as DbParameter;
-                    if (p == null)
-                        throw new Exception("Not support parameter type");
-
-                    commandText += i == 0 ? " " : ", ";
-
-                    commandText += "@" + p.ParameterName;
-                    if (p.Direction == ParameterDirection.InputOutput || p.Direction == ParameterDirection.Output)
-                    {
-                        //output parameter
-                        commandText += " output";
-                    }
-                }
-            }
-
-            var result = this.Database.SqlQuery<TEntity>(commandText, parameters).ToList();
-
-            //performance hack applied as described here - http://www.nopcommerce.com/boards/t/25483/fix-very-important-speed-improvement.aspx
-            bool acd = this.Configuration.AutoDetectChangesEnabled;
-            try
-            {
-                this.Configuration.AutoDetectChangesEnabled = false;
-
-                for (int i = 0; i < result.Count; i++)
-                    result[i] = AttachEntityToContext(result[i]);
-            }
-            finally
-            {
-                this.Configuration.AutoDetectChangesEnabled = acd;
-            }
-
-            return result;
         }
 
         /// <summary>
