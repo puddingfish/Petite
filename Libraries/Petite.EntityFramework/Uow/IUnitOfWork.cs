@@ -31,7 +31,7 @@ namespace Petite.Data.Uow
         /// 提交当前单元操作的更改。
         /// </summary>
         /// <returns>操作影响的行数</returns>
-        int SaveChanges();
+        int Commit();
 
         #endregion
     }

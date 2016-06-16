@@ -11,6 +11,7 @@
 //  
 //======================================================================  
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -54,24 +55,64 @@ namespace Petite.Data
 
             base.OnModelCreating(modelBuilder);
         }
-              
-        #endregion        
 
-        #region Properties
-        
-        /// <summary>
-        /// Gets or sets a value indicating whether auto detect changes setting is enabled (used in EF)
-        /// </summary>
-        public virtual bool AutoDetectChangesEnabled
+        #endregion
+
+        #region methods
+
+        public int ExecuteSqlCommand(TransactionalBehavior transactionalBehavior, string sql, params object[] parameters)
         {
-            get
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<TElement> SqlQuery<TElement>(string sql, params object[] parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable SqlQuery(Type elementType, string sql, params object[] parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable ExecuteStoredProcedureList(string commandText, params object[] parameters)
+        {
+            //add parameters to command
+            if (parameters != null && parameters.Length > 0)
             {
-                return this.Configuration.AutoDetectChangesEnabled;
+                for (int i = 0; i <= parameters.Length - 1; i++)
+                {
+                    var p = parameters[i] as DbParameter;
+                    if (p == null)
+                        throw new Exception("Not support parameter type");
+
+                    commandText += i == 0 ? " " : ", ";
+
+                    commandText += "@" + p.ParameterName;
+                    if (p.Direction == ParameterDirection.InputOutput || p.Direction == ParameterDirection.Output)
+                    {
+                        //output parameter
+                        commandText += " output";
+                    }
+                }
             }
-            set
+
+            var result = this.Database.SqlQuery<TEntity>(commandText, parameters).ToList();
+
+            bool acd = this.Configuration.AutoDetectChangesEnabled;
+            try
             {
-                this.Configuration.AutoDetectChangesEnabled = value;
+                this.Configuration.AutoDetectChangesEnabled = false;
+
+                for (int i = 0; i < result.Count; i++)
+                    result[i] = AttachEntityToContext(result[i]);
             }
+            finally
+            {
+                this.Configuration.AutoDetectChangesEnabled = acd;
+            }
+
+            return result;
         }
 
         #endregion
