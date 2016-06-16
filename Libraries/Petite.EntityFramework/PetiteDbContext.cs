@@ -30,6 +30,7 @@ namespace Petite.Data
             : base(nameOrConnectionString)
         {
             //((IObjectContextAdapter) this).ObjectContext.ContextOptions.LazyLoadingEnabled = true;
+            
         }
 
         #endregion
