@@ -7,8 +7,8 @@
     <ProjectGuid>{B4F3544D-B99B-4319-AD86-11A8A63B5408}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Petite.Data</RootNamespace>
-    <AssemblyName>Petite.Data</AssemblyName>
+    <RootNamespace>Petite.EntityFramework</RootNamespace>
+    <AssemblyName>Petite.EntityFramework</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
