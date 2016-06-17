@@ -54,7 +54,7 @@ namespace Petite.Data
         /// <param name="sql">SQL 查询字符串。</param>
         /// <param name="parameters">要应用于 SQL 查询字符串的参数。 如果使用输出参数，则它们的值在完全读取结果之前不可用。 这是由于 DbDataReader 的基础行为而导致的，有关详细信息，请参见 http://go.microsoft.com/fwlink/?LinkID=398589。</param>
         /// <returns></returns>
-        IEnumerable SqlQuery(Type elementType, string sql, params Object[] parameters);
+        IEnumerable SqlQuery(Type elementType, string sql, params object[] parameters);
 
         /// <summary>
         /// Execute stores procedure and load a list of entities at the end
