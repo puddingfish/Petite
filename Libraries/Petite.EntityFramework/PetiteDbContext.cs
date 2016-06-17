@@ -20,10 +20,11 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Reflection;
 using Petite.Core;
+using Castle.Core.Logging;
 
 namespace Petite.EntityFramework
 {
-    public class PetiteDbContext:DbContext,IPetiteDbContext
+    public class PetiteDbContext:DbContext
     {
         #region Ctor
 
@@ -31,7 +32,6 @@ namespace Petite.EntityFramework
             : base(nameOrConnectionString)
         {
             //((IObjectContextAdapter) this).ObjectContext.ContextOptions.LazyLoadingEnabled = true;
-            
         }
 
         #endregion
@@ -60,19 +60,22 @@ namespace Petite.EntityFramework
 
         #region methods
 
+        /// <summary>
+        /// 对数据库执行给定的 DDL/DML 命令。 
+        /// 与接受 SQL 的任何 API 一样，对任何用户输入进行参数化以便避免 SQL 注入攻击是十分重要的。 您可以在 SQL 查询字符串中包含参数占位符，然后将参数值作为附加参数提供。 
+        /// 您提供的任何参数值都将自动转换为 DbParameter。 ExecuteSqlCommand("UPDATE dbo.Posts SET Rating = 5 WHERE Author = @p0", userSuppliedAuthor); 
+        /// 或者，您还可以构造一个 DbParameter 并将它提供给 SqlQuery。 这允许您在 SQL 查询字符串中使用命名参数。 unitOfWork.ExecuteSqlCommand("UPDATE dbo.Posts SET Rating = 5 WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));
+        /// </summary>
+        /// <param name="transactionalBehavior">对于此命令控制事务的创建。</param>
+        /// <param name="sql">命令字符串。</param>
+        /// <param name="parameters">要应用于命令字符串的参数。</param>
+        /// <returns>执行命令后由数据库返回的结果。</returns>
         public int ExecuteSqlCommand(TransactionalBehavior transactionalBehavior, string sql, params object[] parameters)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TElement> SqlQuery<TElement>(string sql, params object[] parameters)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable SqlQuery(Type elementType, string sql, params object[] parameters)
-        {
-            throw new NotImplementedException();
+            TransactionalBehavior behavior = transactionalBehavior == TransactionalBehavior.DoNotEnsureTransaction
+                 ? TransactionalBehavior.DoNotEnsureTransaction
+                 : TransactionalBehavior.EnsureTransaction;
+            return Database.ExecuteSqlCommand(behavior, sql, parameters);
         }
         
         #endregion
