@@ -11,6 +11,7 @@
 //  
 //======================================================================  
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -29,8 +30,7 @@ namespace Petite.Data
         public PetiteDbContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {
-            //((IObjectContextAdapter) this).ObjectContext.ContextOptions.LazyLoadingEnabled = true;
-            
+            //((IObjectContextAdapter) this).ObjectContext.ContextOptions.LazyLoadingEnabled = true;            
         }
 
         #endregion
@@ -54,11 +54,29 @@ namespace Petite.Data
 
             base.OnModelCreating(modelBuilder);
         }
-              
-        #endregion        
+
+        public virtual int ExecuteSqlCommand(TransactionalBehavior transactionalBehavior, string sql, params object[] parameters)
+        {
+            TransactionalBehavior behavior = transactionalBehavior == TransactionalBehavior.DoNotEnsureTransaction
+                ? TransactionalBehavior.DoNotEnsureTransaction
+                : TransactionalBehavior.EnsureTransaction;
+            return Database.ExecuteSqlCommand(behavior, sql, parameters);
+        }
+
+        public virtual IEnumerable<TElement> SqlQuery<TElement>(string sql, params object[] parameters)
+        {
+            return Database.SqlQuery<TElement>(sql, parameters);
+        }
+
+        public virtual IEnumerable SqlQuery(Type elementType, string sql, params object[] parameters)
+        {
+            return Database.SqlQuery(elementType, sql, parameters);
+        }        
+
+        #endregion
 
         #region Properties
-        
+
         /// <summary>
         /// Gets or sets a value indicating whether auto detect changes setting is enabled (used in EF)
         /// </summary>
