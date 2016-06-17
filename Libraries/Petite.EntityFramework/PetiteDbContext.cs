@@ -21,7 +21,7 @@ using System.Linq;
 using System.Reflection;
 using Petite.Core;
 
-namespace Petite.Data
+namespace Petite.EntityFramework
 {
     public class PetiteDbContext:DbContext,IPetiteDbContext
     {

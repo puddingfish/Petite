@@ -2,7 +2,7 @@
 using System.Linq;
 using Petite.Core;
 
-namespace Petite.Data.Repository
+namespace Petite.EntityFramework.Repository
 {
     public partial interface IRepository<TEntity,TPrimaryKey> where TEntity : BaseEntity<TPrimaryKey>
     {

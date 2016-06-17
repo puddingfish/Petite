@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 
 
-namespace Petite.Data.Uow
+namespace Petite.EntityFramework.Uow
 {
     public interface IUnitOfWork
     {

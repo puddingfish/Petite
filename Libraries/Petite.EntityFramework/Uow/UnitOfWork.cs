@@ -18,7 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Petite.Data.Uow
+namespace Petite.EntityFramework.Uow
 {
     public class UnitOfWork : IUnitOfWork
     {
