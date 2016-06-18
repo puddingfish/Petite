@@ -16,7 +16,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using Petite.Core;
 
-namespace Petite.Data.Repository
+namespace Petite.EntityFramework.Repository
 {
     public partial class PetiteRepository<TEntity,TPrimaryKey> where TEntity :BaseEntity<TPrimaryKey>
     {
