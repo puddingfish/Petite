@@ -9,11 +9,7 @@
 //          
 //======================================================================  
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.Entity;
-
+using System.Threading.Tasks;
 
 namespace Petite.EntityFramework.Uow
 {
@@ -32,6 +28,8 @@ namespace Petite.EntityFramework.Uow
         /// </summary>
         /// <returns>操作影响的行数</returns>
         int Commit();
+
+        Task CommitAsync();
 
         #endregion
     }

@@ -17,15 +17,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Petite.EntityFramework.Uow
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public bool TransactionEnabled { get; set; }
-        
+        public bool TransactionEnabled { get; set; }        
 
         public int Commit()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task CommitAsync()
         {
             throw new NotImplementedException();
         }
