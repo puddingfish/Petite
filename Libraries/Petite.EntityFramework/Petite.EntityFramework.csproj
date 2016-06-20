@@ -64,6 +64,7 @@
     <Compile Include="Repository\PetiteRepository.cs" />
     <Compile Include="Uow\IUnitOfWork.cs" />
     <Compile Include="Uow\UnitOfWork.cs" />
+    <Compile Include="Uow\UnitOfWorkOptions.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
