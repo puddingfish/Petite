@@ -16,13 +16,13 @@ using System.Collections.Generic;
 namespace Petite.Core
 {
     [Serializable]
-    public abstract class BaseEntity<TPrimaryKey>:IEntity<TPrimaryKey>
+    public abstract class BaseEntity<TPrimaryKey> : IEntity<TPrimaryKey>
     {
         /// <summary>
         /// Entity主键
         /// </summary>
-        public virtual TPrimaryKey Id{get; set;}
-        
+        public virtual TPrimaryKey Id { get; set; }
+
         public virtual bool IsTransient()
         {
             return EqualityComparer<TPrimaryKey>.Default.Equals(Id, default(TPrimaryKey));
@@ -69,7 +69,7 @@ namespace Petite.Core
             if (Equals(Id, default(int)))
                 return base.GetHashCode();
             return Id.GetHashCode();
-        }        
+        }
 
         public static bool operator ==(BaseEntity<TPrimaryKey> x, BaseEntity<TPrimaryKey> y)
         {

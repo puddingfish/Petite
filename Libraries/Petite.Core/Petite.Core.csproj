@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,13 +42,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="Domain\Uow\IActiveUnitOfWork.cs" />
+    <Compile Include="Domain\Uow\IUnitOfWork.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkFailedEventArgs.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkOptions.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Caching\" />
     <Folder Include="Data\" />
-    <Folder Include="Domain\" />
     <Folder Include="Events\" />
     <Folder Include="Extension\" />
     <Folder Include="Plugins\" />
