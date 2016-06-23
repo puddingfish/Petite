@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Petite.Core.Domain.Uow
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork :IActiveUnitOfWork, IDisposable
     {
         #region fields
 
@@ -22,9 +22,7 @@ namespace Petite.Core.Domain.Uow
         /// UOW唯一标识
         /// </summary>
         string Id { get; }
-
-        UnitOfWorkOptions Options { get; set; }
-
+        
         /// <summary>
         /// 引用外部存在的UOW
         /// </summary>
