@@ -42,11 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
-    <Compile Include="Domain\Uow\IActiveUnitOfWork.cs" />
-    <Compile Include="Domain\Uow\IUnitOfWork.cs" />
-    <Compile Include="Domain\Uow\UnitOfWorkBase.cs" />
-    <Compile Include="Domain\Uow\UnitOfWorkFailedEventArgs.cs" />
-    <Compile Include="Domain\Uow\UnitOfWorkOptions.cs" />
     <Compile Include="Extension\EventHandlerExtensions.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,6 +49,7 @@
   <ItemGroup>
     <Folder Include="Caching\" />
     <Folder Include="Data\" />
+    <Folder Include="Domain\" />
     <Folder Include="Events\" />
     <Folder Include="Plugins\" />
   </ItemGroup>

@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Services", "Librarie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Core", "Libraries\Petite.Core\Petite.Core.csproj", "{D08045B1-640A-4126-B9D7-813D950DE2AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Data", "Libraries\Petite.EntityFramework\Petite.EntityFramework.csproj", "{B4F3544D-B99B-4319-AD86-11A8A63B5408}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Data", "Libraries\Petite.Data\Petite.Data.csproj", "{B4F3544D-B99B-4319-AD86-11A8A63B5408}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petite.Web", "Presentation\Petite.Web\Petite.Web.csproj", "{CF47EB54-9097-4E94-858E-B15840F470E8}"
 EndProject

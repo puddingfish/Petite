@@ -9,12 +9,10 @@
 //          
 //======================================================================  
 
-using System;
-using System.Threading.Tasks;
 
-namespace Petite.Core.Domain.Uow
+namespace Petite.Data.Domain.Uow
 {
-    public interface IUnitOfWork :IActiveUnitOfWork, IDisposable
+    public interface IUnitOfWork : IActiveUnitOfWork, IUnitOfWorkCompleteHandle
     {
         #region fields
 
@@ -22,7 +20,7 @@ namespace Petite.Core.Domain.Uow
         /// UOW唯一标识
         /// </summary>
         string Id { get; }
-        
+
         /// <summary>
         /// 引用外部存在的UOW
         /// </summary>
@@ -30,24 +28,13 @@ namespace Petite.Core.Domain.Uow
 
         #endregion
 
-        #region methods       
+        #region methods
 
         /// <summary>
         /// 根据给定的Options启动UOW
         /// </summary>
         /// <param name="options"></param>
         void Begin(UnitOfWorkOptions options);
-
-        /// <summary>
-        /// 完成UOW
-        /// </summary>
-        void Complete();
-
-        /// <summary>
-        /// 异步完成UOW
-        /// </summary>
-        /// <returns></returns>
-        Task CompleteAsync();
 
         #endregion
     }

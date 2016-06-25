@@ -10,13 +10,9 @@
 //======================================================================  
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
-namespace Petite.Core.Domain.Uow
+namespace Petite.Data.Domain.Uow
 {
     /// <summary>
     /// Used as event arguments on <see cref="IActiveUnitOfWork.Failed"/> event.

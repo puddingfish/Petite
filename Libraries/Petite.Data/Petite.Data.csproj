@@ -7,8 +7,8 @@
     <ProjectGuid>{B4F3544D-B99B-4319-AD86-11A8A63B5408}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Petite.EntityFramework</RootNamespace>
-    <AssemblyName>Petite.EntityFramework</AssemblyName>
+    <RootNamespace>Petite.Data</RootNamespace>
+    <AssemblyName>Petite.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -46,6 +46,18 @@
       <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Nito.AsyncEx, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Concurrent, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.Concurrent.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Enlightenment, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.Enlightenment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -58,12 +70,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Uow\IActiveUnitOfWork.cs" />
+    <Compile Include="Domain\Uow\ICurrentUnitOfWorkProvider.cs" />
+    <Compile Include="Domain\Uow\InnerUnitOfWorkCompleteHandle.cs" />
+    <Compile Include="Domain\Uow\IUnitOfWork.cs" />
+    <Compile Include="Domain\Uow\IUnitOfWorkCompleteHandle.cs" />
+    <Compile Include="Domain\Uow\IUnitOfWorkManager.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkAttribute.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkBase.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkFailedEventArgs.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkHelper.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkInterceptor.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkManager.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkOptions.cs" />
     <Compile Include="PetiteDbContext.cs" />
     <Compile Include="PetiteEntityTypeConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Repository\PetiteRepository.cs" />
-    <Compile Include="Uow\UnitOfWork.cs" />
+    <Compile Include="Domain\Repository\IRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\PetiteRepository.cs" />
+    <Compile Include="EntityFramework\Uow\EfUnitOfWork.cs" />
+    <Compile Include="Threading\AsyncHelper.cs" />
+    <Compile Include="Threading\InternalAsyncHelper.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -74,6 +101,10 @@
     <ProjectReference Include="..\Petite.Core\Petite.Core.csproj">
       <Project>{d08045b1-640a-4126-b9d7-813d950de2af}</Project>
       <Name>Petite.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Petite.Utils\Petite.Utils.csproj">
+      <Project>{E2540CBA-0440-4544-A72F-B34E6D609000}</Project>
+      <Name>Petite.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

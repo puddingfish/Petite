@@ -12,7 +12,7 @@
 using System;
 using System.Transactions;
 
-namespace Petite.Core.Domain.Uow
+namespace Petite.Data.Domain.Uow
 {
     public class UnitOfWorkOptions
     {
@@ -38,5 +38,11 @@ namespace Petite.Core.Domain.Uow
         /// 如果当前UOW是事务型的，此选项设置事务的隔离级别
         /// </summary>
         public IsolationLevel? IsolationLevel { get; set; }
+
+        /// <summary>
+        /// 指示是否为TransactionScope启用跨线程连续任务的事务流
+        /// </summary>
+        public TransactionScopeAsyncFlowOption? AsyncFlowOption { get; set; }
+
     }
 }

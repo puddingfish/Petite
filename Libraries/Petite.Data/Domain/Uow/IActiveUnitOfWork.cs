@@ -13,7 +13,7 @@ using System;
 using System.Threading.Tasks;
 
 
-namespace Petite.Core.Domain.Uow
+namespace Petite.Data.Domain.Uow
 {
     public interface IActiveUnitOfWork
     {

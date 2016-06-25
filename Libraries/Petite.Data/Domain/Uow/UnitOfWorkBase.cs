@@ -10,14 +10,11 @@
 //======================================================================  
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Petite.Core.Extension;
 
 
-namespace Petite.Core.Domain.Uow
+namespace Petite.Data.Domain.Uow
 {
     /// <summary>
     /// 所有Unit of work的基类
@@ -146,14 +143,38 @@ namespace Petite.Core.Domain.Uow
             }
         }
 
-        public Task CompleteAsync()
+        public async Task CompleteAsync()
         {
-            throw new NotImplementedException();
+            PreventMultipleComplete();
+            try
+            {
+                await CompleteUowAsync();
+                _succeed = true;
+                OnCompleted();
+            }
+            catch (Exception ex)
+            {
+                _exception = ex;
+                throw;
+            }
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            if (IsDisposed)
+            {
+                return;
+            }
+
+            IsDisposed = true;
+
+            if (!_succeed)
+            {
+                OnFailed(_exception);
+            }
+
+            DisposeUow();
+            OnDisposed();
         }
 
         /// <summary>

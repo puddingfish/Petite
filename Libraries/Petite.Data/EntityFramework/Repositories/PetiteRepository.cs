@@ -15,10 +15,11 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using Petite.Core;
+using Petite.Data.Domain.Repository;
 
-namespace Petite.EntityFramework.Repository
+namespace Petite.Data.EntityFramework.Repository
 {
-    public partial class PetiteRepository<TEntity,TPrimaryKey> where TEntity :BaseEntity<TPrimaryKey>
+    public partial class PetiteRepository<TEntity,TPrimaryKey>:IRepository<TEntity,TPrimaryKey> where TEntity :BaseEntity<TPrimaryKey>
     {
         #region Fields
 
