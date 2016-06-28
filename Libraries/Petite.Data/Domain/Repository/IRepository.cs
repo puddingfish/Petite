@@ -7,9 +7,9 @@ using Petite.Core;
 
 namespace Petite.Data.Domain.Repository
 {
-    public partial interface IRepository<TEntity,TPrimaryKey> where TEntity : BaseEntity<TPrimaryKey>
+    public partial interface IRepository<TEntity, TPrimaryKey> where TEntity : class, IEntity<TPrimaryKey>
     {
-        #region GET/Query
+        #region fields
 
         /// <summary>
         /// 返回一个IQueryable用于检索整个表的Entities
@@ -23,6 +23,10 @@ namespace Petite.Data.Domain.Repository
         /// </summary>
         IQueryable<TEntity> TableNoTracking { get; }
 
+        #endregion
+
+        #region GET/Query
+
         /// <summary>
         /// 返回一个基于实体的查询
         /// 如果返回 IQueryable带有ToList()或者FirstOrDefault等则<see cref="UnitOfWorkAttribute"/>属性不是必须的
@@ -31,6 +35,15 @@ namespace Petite.Data.Domain.Repository
         /// <param name="queryMethod">查询实体类的方法</param>
         /// <returns></returns>
         T Query<T>(Func<IQueryable<TEntity>, T> queryMethod);
+
+        /// <summary>
+        /// 返回一个基于实体的查询
+        /// 如果返回 IQueryable带有ToList()或者FirstOrDefault等则<see cref="UnitOfWorkAttribute"/>属性不是必须的
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="queryMethod"></param>
+        /// <returns></returns>
+        T QueryAsNoTracking<T>(Func<IQueryable<TEntity>, T> queryMethod);
 
         /// <summary>
         /// 根据ID获取实体
@@ -62,7 +75,7 @@ namespace Petite.Data.Domain.Repository
         /// <param name="entity">Entity</param>
         /// <returns></returns>
         Task<TEntity> InsertAsync(TEntity entity);
-        
+
         /// <summary>
         /// 新增一个实体并返回新增实体的Id
         /// </summary>
@@ -108,7 +121,7 @@ namespace Petite.Data.Domain.Repository
         #endregion
 
         #region Update
-        
+
         /// <summary>
         /// 更新一个实体
         /// </summary>
@@ -155,7 +168,7 @@ namespace Petite.Data.Domain.Repository
         void Delete(TPrimaryKey id);
 
         /// <summary>
-        /// 
+        /// 根据给定谓词表达式批量删除实体，数量过多可能会导致性能问题
         /// </summary>
         /// <param name="predicate"></param>
         void Delete(Expression<Func<TEntity, bool>> predicate);
@@ -173,6 +186,13 @@ namespace Petite.Data.Domain.Repository
         /// <param name="id"></param>
         /// <returns></returns>
         Task DeleteAsync(TPrimaryKey id);
+
+        /// <summary>
+        /// 根据给定谓词表达式批量删除实体，数量过多可能会导致性能问题
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        Task DeleteAsync(Expression<Func<TEntity, bool>> predicate);
 
         #endregion
     }

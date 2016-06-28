@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Repository\PetiteRepositoryBase.cs" />
     <Compile Include="Domain\Uow\IActiveUnitOfWork.cs" />
     <Compile Include="Domain\Uow\ICurrentUnitOfWorkProvider.cs" />
     <Compile Include="Domain\Uow\InnerUnitOfWorkCompleteHandle.cs" />
