@@ -11,7 +11,7 @@
 
 using System.Data.Entity.ModelConfiguration;
 
-namespace Petite.EntityFramework
+namespace Petite.Data
 {
     public class PetiteEntityTypeConfiguration<T> : EntityTypeConfiguration<T> where T : class
     {

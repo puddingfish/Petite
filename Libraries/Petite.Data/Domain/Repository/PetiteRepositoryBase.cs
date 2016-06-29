@@ -10,10 +10,8 @@
 //======================================================================  
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 using Petite.Core;
 
@@ -29,28 +27,28 @@ namespace Petite.Data.Domain.Repository
         #region fields
 
         public abstract IQueryable<TEntity> Table { get; }
-        public abstract IQueryable<TEntity> TableAsNoTracking { get;}
+        public abstract IQueryable<TEntity> TableNoTracking { get; }
 
         #endregion        
 
         #region Get/Query
 
-        public virtual T Query<T>(Func<IQueryable<TEntity>,T> queryMethod)
+        public virtual T Query<T>(Func<IQueryable<TEntity>, T> queryMethod)
         {
             return queryMethod(Table);
         }
 
-        public virtual T QueryAsNoTracking<T>(Func<IQueryable<TEntity>,T> queryMethod)
+        public virtual T QueryAsNoTracking<T>(Func<IQueryable<TEntity>, T> queryMethod)
         {
-            return queryMethod(TableAsNoTracking);
+            return queryMethod(TableNoTracking);
         }
 
         public virtual TEntity GetById(TPrimaryKey id)
         {
             var entity = Table.FirstOrDefault(CreateEqualityExpressionForId(id));
-            if(entity==null)
+            if (entity == null)
             {
-                throw new Exception("根据ID值未找到相应的Entity，Entity Type："+typeof(TEntity).FullName+"，ID："+id);
+                throw new Exception("根据ID值未找到相应的Entity，Entity Type：" + typeof(TEntity).FullName + "，ID：" + id);
             }
             return entity;
         }
@@ -58,7 +56,7 @@ namespace Petite.Data.Domain.Repository
         public virtual async Task<TEntity> GetByIdAsync(TPrimaryKey id)
         {
             var entity = await Task.FromResult(Table.FirstOrDefault(CreateEqualityExpressionForId(id)));
-            if(entity==null)
+            if (entity == null)
             {
                 throw new Exception("根据ID值未找到相应的Entity，Entity Type：" + typeof(TEntity).FullName + "，ID：" + id);
             }
@@ -76,9 +74,9 @@ namespace Petite.Data.Domain.Repository
             return Task.FromResult(Insert(entity));
         }
 
-        public virtual TPrimaryKey InsertAndGetId(TEntity endity)
+        public virtual TPrimaryKey InsertAndGetId(TEntity entity)
         {
-            return Insert(endity).Id;
+            return Insert(entity).Id;
         }
 
         public virtual Task<TPrimaryKey> InsertAndGetIdAsync(TEntity entity)
@@ -88,7 +86,7 @@ namespace Petite.Data.Domain.Repository
 
         public virtual TEntity InsertOrUpdate(TEntity entity)
         {
-            return entity.IsTransient() ?  Insert(entity) : Update(entity);
+            return entity.IsTransient() ? Insert(entity) : Update(entity);
         }
 
         public virtual async Task<TEntity> InsertOrUpdateAsync(TEntity entity)
@@ -115,6 +113,53 @@ namespace Petite.Data.Domain.Repository
         public virtual Task<TEntity> UpdateAsync(TEntity entity)
         {
             return Task.FromResult(Update(entity));
+        }
+
+        public virtual TEntity Update(TPrimaryKey id, Action<TEntity> updateAction)
+        {
+            var entity = GetById(id);
+            updateAction(entity);
+            return entity;
+        }
+
+        public virtual async Task<TEntity> UpdateAsync(TPrimaryKey id, Func<TEntity, Task> updateAction)
+        {
+            var entity = await GetByIdAsync(id);
+            await updateAction(entity);
+            return entity;
+        }
+
+        #endregion
+
+        #region delete
+
+        public abstract void Delete(TEntity entity);
+
+        public virtual Task DeleteAsync(TEntity entity)
+        {
+            Delete(entity);
+            return Task.FromResult(0);
+        }
+
+        public abstract void Delete(TPrimaryKey id);
+
+        public virtual Task DeleteAsync(TPrimaryKey id)
+        {
+            Delete(id);
+            return Task.FromResult(0);
+        }
+
+        public virtual void Delete(Expression<Func<TEntity, bool>> predicate)
+        {
+            foreach (var entity in Table.Where(predicate).ToList())
+            {
+                Delete(entity);
+            }
+        }
+
+        public virtual async Task DeleteAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            Delete(predicate);
         }
 
         #endregion

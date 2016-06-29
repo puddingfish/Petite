@@ -67,7 +67,7 @@ namespace Petite.Data.Domain.Repository
         /// 添加一个实体
         /// </summary>
         /// <param name="entity">Entity</param>
-        void Insert(TEntity entity);
+        TEntity Insert(TEntity entity);
 
         /// <summary>
         /// 异步添加一个实体
@@ -159,40 +159,40 @@ namespace Petite.Data.Domain.Repository
         /// 删除一个实体
         /// </summary>
         /// <param name="entity">Entity</param>
-        void Delete(TEntity entity);
+        bool Delete(TEntity entity);
 
         /// <summary>
         /// 根据ID删除一个实体
         /// </summary>
         /// <param name="id"></param>
-        void Delete(TPrimaryKey id);
+        bool Delete(TPrimaryKey id);
 
         /// <summary>
         /// 根据给定谓词表达式批量删除实体，数量过多可能会导致性能问题
         /// </summary>
         /// <param name="predicate"></param>
-        void Delete(Expression<Func<TEntity, bool>> predicate);
+        int Delete(Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
         /// 异步删除一个实体
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task DeleteAsync(TEntity entity);
+        Task<bool> DeleteAsync(TEntity entity);
 
         /// <summary>
         /// 根据ID异步删除一个实体
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task DeleteAsync(TPrimaryKey id);
+        Task<bool> DeleteAsync(TPrimaryKey id);
 
         /// <summary>
         /// 根据给定谓词表达式批量删除实体，数量过多可能会导致性能问题
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        Task DeleteAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<int> DeleteAsync(Expression<Func<TEntity, bool>> predicate);
 
         #endregion
     }

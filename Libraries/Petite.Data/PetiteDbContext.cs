@@ -22,7 +22,7 @@ using System.Reflection;
 using Petite.Core;
 using Castle.Core.Logging;
 
-namespace Petite.EntityFramework
+namespace Petite.Data
 {
     public class PetiteDbContext:DbContext
     {
