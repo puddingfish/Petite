@@ -44,6 +44,9 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Domain\Entities\ISoftDelete.cs" />
     <Compile Include="Events\Entities\EntityEventData.cs" />
+    <Compile Include="Events\EventData.cs" />
+    <Compile Include="Events\IEventBus.cs" />
+    <Compile Include="Events\IEventData.cs" />
     <Compile Include="Extension\EventHandlerExtensions.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,6 +54,8 @@
   <ItemGroup>
     <Folder Include="Caching\" />
     <Folder Include="Data\" />
+    <Folder Include="Events\Factories\" />
+    <Folder Include="Events\Handlers\" />
     <Folder Include="Plugins\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

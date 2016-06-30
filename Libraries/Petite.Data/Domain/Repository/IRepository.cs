@@ -1,5 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//======================================================================  
+//  
+//        Copyright (C) 2016 哈分享网      
+//        All rights reserved    
+//        Filename :EfRepository 
+//        Description :    
+//        Created by Wsy at 2016/6/29 11:08:10
+//        http://www.hafenxiang.com 
+//  
+//======================================================================  
+
+using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -159,40 +169,40 @@ namespace Petite.Data.Domain.Repository
         /// 删除一个实体
         /// </summary>
         /// <param name="entity">Entity</param>
-        bool Delete(TEntity entity);
+        void Delete(TEntity entity);
 
         /// <summary>
         /// 根据ID删除一个实体
         /// </summary>
         /// <param name="id"></param>
-        bool Delete(TPrimaryKey id);
+        void Delete(TPrimaryKey id);
 
         /// <summary>
         /// 根据给定谓词表达式批量删除实体，数量过多可能会导致性能问题
         /// </summary>
         /// <param name="predicate"></param>
-        int Delete(Expression<Func<TEntity, bool>> predicate);
+        void Delete(Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
         /// 异步删除一个实体
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task<bool> DeleteAsync(TEntity entity);
+        Task DeleteAsync(TEntity entity);
 
         /// <summary>
         /// 根据ID异步删除一个实体
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<bool> DeleteAsync(TPrimaryKey id);
+        Task DeleteAsync(TPrimaryKey id);
 
         /// <summary>
         /// 根据给定谓词表达式批量删除实体，数量过多可能会导致性能问题
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        Task<int> DeleteAsync(Expression<Func<TEntity, bool>> predicate);
+        Task DeleteAsync(Expression<Func<TEntity, bool>> predicate);
 
         #endregion
     }
