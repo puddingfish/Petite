@@ -9,11 +9,9 @@
 //  
 //======================================================================  
 
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Petite.Core;
 using Petite.Core.Domain.Entities;
@@ -21,7 +19,7 @@ using Petite.Data.Domain.Repository;
 
 namespace Petite.Data.EntityFramework.Repositories
 {
-     public class EfRepository<TDbContext,TEntity,TPrimaryKey>:PetiteRepositoryBase<TEntity,TPrimaryKey> 
+    public class EfRepository<TDbContext,TEntity,TPrimaryKey>:PetiteRepositoryBase<TEntity,TPrimaryKey> 
         where TEntity:class,IEntity<TPrimaryKey>
          where TDbContext :DbContext
     {

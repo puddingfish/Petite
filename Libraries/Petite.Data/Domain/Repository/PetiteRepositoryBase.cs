@@ -22,7 +22,8 @@ namespace Petite.Data.Domain.Repository
     /// </summary>
     /// <typeparam name="TEntity">当前仓储的实体</typeparam>
     /// <typeparam name="TPrimaryKey">实体的主键类型</typeparam>
-    public abstract class PetiteRepositoryBase<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey> where TEntity : class, IEntity<TPrimaryKey>
+    public abstract class PetiteRepositoryBase<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey> 
+        where TEntity : class, IEntity<TPrimaryKey>
     {
         #region fields
 

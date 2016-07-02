@@ -11,7 +11,7 @@
 
 using System;
 using System.Reflection;
-
+using Petite.Data.Domain.Repository;
 
 namespace Petite.Data.Domain.Uow
 {
@@ -23,7 +23,7 @@ namespace Petite.Data.Domain.Uow
         /// <param name="type">Type to check</param>
         public static bool IsConventionalUowClass(Type type)
         {
-            return typeof(IRepository).IsAssignableFrom(type) || typeof(IApplicationService).IsAssignableFrom(type);
+            return typeof(IRepository).IsAssignableFrom(type) /*|| typeof(IApplicationService).IsAssignableFrom(type)*/;
         }
 
         /// <summary>
