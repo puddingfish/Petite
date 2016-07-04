@@ -21,16 +21,26 @@ using System.Linq;
 using System.Reflection;
 using Petite.Core;
 using Castle.Core.Logging;
+using System.Threading.Tasks;
+using Petite.Core.Events;
+using System.Data.Entity.Validation;
 
 namespace Petite.Data
 {
     public class PetiteDbContext:DbContext
     {
+        #region fields
+        
+        public ILogger Logger { get; set; }
+
+        #endregion
+
         #region Ctor
 
         public PetiteDbContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {
+            Logger = NullLogger.Instance;
             //((IObjectContextAdapter) this).ObjectContext.ContextOptions.LazyLoadingEnabled = true;
         }
 
@@ -60,6 +70,26 @@ namespace Petite.Data
 
         #region methods
 
+        public override int SaveChanges()
+        {
+            try
+            {
+                ApplyPetiteConcepts();
+return base.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+
+                throw;
+            }
+            
+        }
+
+        public override Task<int> SaveChangesAsync()
+        {
+            return base.SaveChangesAsync();
+        }
+
         /// <summary>
         /// 对数据库执行给定的 DDL/DML 命令。 
         /// 与接受 SQL 的任何 API 一样，对任何用户输入进行参数化以便避免 SQL 注入攻击是十分重要的。 您可以在 SQL 查询字符串中包含参数占位符，然后将参数值作为附加参数提供。 
@@ -77,7 +107,39 @@ namespace Petite.Data
                  : TransactionalBehavior.EnsureTransaction;
             return Database.ExecuteSqlCommand(behavior, sql, parameters);
         }
-        
+
+
+        protected virtual void ApplyPetiteConcepts()
+        {
+            foreach (var entry in ChangeTracker.Entries())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        break;
+                    case EntityState.Deleted:
+                        break;
+                    case EntityState.Modified:
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 数据库实体验证异常
+        /// </summary>
+        /// <param name="exception"></param>
+        private void LogDbEntityValidationException(DbEntityValidationException exception)
+        {
+            Logger.Error("EF提交更改时发生了一些错误：");
+            foreach (var ve in exception.EntityValidationErrors.SelectMany(eve => eve.ValidationErrors))
+            {
+                Logger.Error(" - " + ve.PropertyName + "： " + ve.ErrorMessage);
+            }
+        }
+
         #endregion
     }
 }

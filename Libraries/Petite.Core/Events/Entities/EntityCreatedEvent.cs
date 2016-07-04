@@ -13,7 +13,7 @@
 
 namespace Petite.Core.Events.Entities
 {
-    public class EntityCreatedEvent<TEntity,TPrimaryKey> where TEntity:IEntity<TPrimaryKey>
+    public class EntityCreatedEvent<TEntity>
     {
         public TEntity Entity { get; private set; }
 

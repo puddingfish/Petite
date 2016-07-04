@@ -13,7 +13,7 @@
 
 namespace Petite.Core.Events.Entities
 {
-    public class EntityDeletedEvent<TEntity,TPrimaryKey> where TEntity :IEntity<TPrimaryKey>
+    public class EntityDeletedEvent<TEntity>
     {
         public TEntity Entity { get; private set; }
 

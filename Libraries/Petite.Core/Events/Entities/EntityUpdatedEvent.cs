@@ -13,7 +13,7 @@
 
 namespace Petite.Core.Events.Entities
 {
-    public class EntityUpdatedEvent<TEntity,TPrimaryKey> where TEntity:IEntity<TPrimaryKey>
+    public class EntityUpdatedEvent<TEntity>
     {
         public TEntity Entity { get; private set; }
 
