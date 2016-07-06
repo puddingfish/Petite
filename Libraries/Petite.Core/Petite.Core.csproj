@@ -50,16 +50,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="Configuration\Startup\IEventBusConfiguration.cs" />
     <Compile Include="Dependency\ITransientDependency.cs" />
     <Compile Include="Domain\Entities\ISoftDelete.cs" />
     <Compile Include="Events\Entities\EntityCreatedEvent.cs" />
     <Compile Include="Events\Entities\EntityDeletedEvent.cs" />
     <Compile Include="Events\Entities\EntityUpdatedEvent.cs" />
+    <Compile Include="Events\EventBus.cs" />
+    <Compile Include="Events\EventBusInstaller.cs" />
     <Compile Include="Events\EventData.cs" />
     <Compile Include="Events\Factories\IEventHandlerFactory.cs" />
+    <Compile Include="Events\Factories\Internals\FactoryUnregistrar.cs" />
+    <Compile Include="Events\Factories\Internals\SingleInstanceHandlerFactory.cs" />
+    <Compile Include="Events\Factories\Internals\TransientEventHandlerFactory.cs" />
     <Compile Include="Events\Factories\IocHandlerFactory.cs" />
     <Compile Include="Events\Handlers\IEventHandler.cs" />
     <Compile Include="Events\Handlers\IEventHandlerOfTEventData.cs" />
+    <Compile Include="Events\Handlers\internals\ActionEventHandler.cs" />
     <Compile Include="Events\IEventBus.cs" />
     <Compile Include="Events\IEventData.cs" />
     <Compile Include="Events\IEventDataWithInheritableGenericArgument.cs" />

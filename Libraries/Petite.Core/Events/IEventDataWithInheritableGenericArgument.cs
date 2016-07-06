@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Petite.Core.Events
+﻿namespace Petite.Core.Events
 {
     /// <summary>
     /// 单独泛型参数的事件信息类必须实现此接口，此参数将被继承使用
@@ -18,6 +12,6 @@ namespace Petite.Core.Events
         /// 当创建一个类的新实例后获取其参数
         /// </summary>
         /// <returns></returns>
-        object[] GetConstuctorArgs();
+        object[] GetConstructorArgs();
     }
 }

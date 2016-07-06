@@ -29,42 +29,42 @@ namespace Petite.Core.Events
         IDisposable Register<TEventData>(Action<TEventData> action) where TEventData : IEventData;
 
         /// <summary>
-        /// Registers to an event. 
-        /// Same (given) instance of the handler is used for all event occurrences.
+        /// 注册到事件
+        /// 使用相同Handler处理.
         /// </summary>
-        /// <typeparam name="TEventData">Event type</typeparam>
-        /// <param name="handler">Object to handle the event</param>
+        /// <typeparam name="TEventData">事件信息</typeparam>
+        /// <param name="handler">处理事件的对象</param>
         IDisposable Register<TEventData>(IEventHandler<TEventData> handler) where TEventData : IEventData;
 
         /// <summary>
-        /// Registers to an event.
-        /// A new instance of <see cref="THandler"/> object is created for every event occurrence.
+        /// 注册到事件
+        /// 每一个事件发生都会创建一个新的Handler对象
         /// </summary>
-        /// <typeparam name="TEventData">Event type</typeparam>
-        /// <typeparam name="THandler">Type of the event handler</typeparam>
+        /// <typeparam name="TEventData">事件信息</typeparam>
+        /// <typeparam name="THandler">事件处理类型</typeparam>
         IDisposable Register<TEventData, THandler>() where TEventData : IEventData where THandler : IEventHandler<TEventData>, new();
 
         /// <summary>
-        /// Registers to an event.
-        /// Same (given) instance of the handler is used for all event occurrences.
+        /// 注册到事件
+        /// 所有事件都使用相同Handler处理
         /// </summary>
-        /// <param name="eventType">Event type</param>
+        /// <param name="eventType">事件信息</param>
         /// <param name="handler">Object to handle the event</param>
         IDisposable Register(Type eventType, IEventHandler handler);
 
         /// <summary>
-        /// Registers to an event.
-        /// Given factory is used to create/release handlers
+        /// 注册到事件
+        /// 使用给定的事件处理工厂创建或释放Handlers
         /// </summary>
-        /// <typeparam name="TEventData">Event type</typeparam>
-        /// <param name="handlerFactory">A factory to create/release handlers</param>
+        /// <typeparam name="TEventData">事件信息</typeparam>
+        /// <param name="handlerFactory">创建或释放handlers的Factory</param>
         IDisposable Register<TEventData>(IEventHandlerFactory handlerFactory) where TEventData : IEventData;
 
         /// <summary>
-        /// Registers to an event.
+        /// 注册到事件
         /// </summary>
-        /// <param name="eventType">Event type</param>
-        /// <param name="handlerFactory">A factory to create/release handlers</param>
+        /// <param name="eventType">事件类型</param>
+        /// <param name="handlerFactory">创建或释放handlers的Factory</param>
         IDisposable Register(Type eventType, IEventHandlerFactory handlerFactory);
 
         #endregion
@@ -72,50 +72,50 @@ namespace Petite.Core.Events
         #region Unregister
 
         /// <summary>
-        /// Unregisters from an event.
+        /// 从一个事件注销Handler
         /// </summary>
-        /// <typeparam name="TEventData">Event type</typeparam>
+        /// <typeparam name="TEventData">事件信息</typeparam>
         /// <param name="action"></param>
         void Unregister<TEventData>(Action<TEventData> action) where TEventData : IEventData;
 
         /// <summary>
-        /// Unregisters from an event.
+        /// 从一个事件注销HandlerHandler
         /// </summary>
-        /// <typeparam name="TEventData">Event type</typeparam>
+        /// <typeparam name="TEventData">事件信息</typeparam>
         /// <param name="handler">Handler object that is registered before</param>
         void Unregister<TEventData>(IEventHandler<TEventData> handler) where TEventData : IEventData;
 
         /// <summary>
-        /// Unregisters from an event.
+        /// 从一个事件注销Handler
         /// </summary>
-        /// <param name="eventType">Event type</param>
+        /// <param name="eventType">事件信息</param>
         /// <param name="handler">Handler object that is registered before</param>
         void Unregister(Type eventType, IEventHandler handler);
 
         /// <summary>
-        /// Unregisters from an event.
+        /// 从一个事件注销Handler
         /// </summary>
-        /// <typeparam name="TEventData">Event type</typeparam>
+        /// <typeparam name="TEventData">事件信息</typeparam>
         /// <param name="factory">Factory object that is registered before</param>
         void Unregister<TEventData>(IEventHandlerFactory factory) where TEventData : IEventData;
 
         /// <summary>
-        /// Unregisters from an event.
+        /// 从一个事件注销Handler
         /// </summary>
-        /// <param name="eventType">Event type</param>
+        /// <param name="eventType">事件信息</param>
         /// <param name="factory">Factory object that is registered before</param>
         void Unregister(Type eventType, IEventHandlerFactory factory);
 
         /// <summary>
-        /// Unregisters all event handlers of given event type.
+        ///根据给定的事件信息注销所有的Handler
         /// </summary>
-        /// <typeparam name="TEventData">Event type</typeparam>
+        /// <typeparam name="TEventData">事件信息</typeparam>
         void UnregisterAll<TEventData>() where TEventData : IEventData;
 
         /// <summary>
-        /// Unregisters all event handlers of given event type.
+        /// 根据给定的事件信息注销所有的Handler
         /// </summary>
-        /// <param name="eventType">Event type</param>
+        /// <param name="eventType">事件信息</param>
         void UnregisterAll(Type eventType);
 
         #endregion
@@ -123,67 +123,67 @@ namespace Petite.Core.Events
         #region Trigger
 
         /// <summary>
-        /// Triggers an event.
+        /// 触发事件
         /// </summary>
-        /// <typeparam name="TEventData">Event type</typeparam>
-        /// <param name="eventData">Related data for the event</param>
+        /// <typeparam name="TEventData">事件信息</typeparam>
+        /// <param name="eventData">事件关联的信息</param>
         void Trigger<TEventData>(TEventData eventData) where TEventData : IEventData;
 
         /// <summary>
-        /// Triggers an event.
+        /// 触发事件
         /// </summary>
-        /// <typeparam name="TEventData">Event type</typeparam>
+        /// <typeparam name="TEventData">事件信息</typeparam>
         /// <param name="eventSource">The object which triggers the event</param>
-        /// <param name="eventData">Related data for the event</param>
+        /// <param name="eventData">事件关联的信息</param>
         void Trigger<TEventData>(object eventSource, TEventData eventData) where TEventData : IEventData;
 
         /// <summary>
-        /// Triggers an event.
+        /// 触发事件
         /// </summary>
-        /// <param name="eventType">Event type</param>
-        /// <param name="eventData">Related data for the event</param>
+        /// <param name="eventType">事件信息</param>
+        /// <param name="eventData">事件关联的信息</param>
         void Trigger(Type eventType, IEventData eventData);
 
         /// <summary>
-        /// Triggers an event.
+        /// 触发事件
         /// </summary>
-        /// <param name="eventType">Event type</param>
-        /// <param name="eventSource">The object which triggers the event</param>
-        /// <param name="eventData">Related data for the event</param>
+        /// <param name="eventType">事件信息</param>
+        /// <param name="eventSource">触发事件的对象</param>
+        /// <param name="eventData">事件关联的信息</param>
         void Trigger(Type eventType, object eventSource, IEventData eventData);
 
         /// <summary>
-        /// Triggers an event asynchronously.
+        /// 异步触发事件
         /// </summary>
-        /// <typeparam name="TEventData">Event type</typeparam>
-        /// <param name="eventData">Related data for the event</param>
-        /// <returns>The task to handle async operation</returns>
+        /// <typeparam name="TEventData">事件信息</typeparam>
+        /// <param name="eventData">事件关联的信息</param>
+        /// <returns>处理异步操作的Task</returns>
         Task TriggerAsync<TEventData>(TEventData eventData) where TEventData : IEventData;
 
         /// <summary>
-        /// Triggers an event asynchronously.
+        /// 异步触发事件.
         /// </summary>
-        /// <typeparam name="TEventData">Event type</typeparam>
-        /// <param name="eventSource">The object which triggers the event</param>
-        /// <param name="eventData">Related data for the event</param>
-        /// <returns>The task to handle async operation</returns>
+        /// <typeparam name="TEventData">事件信息</typeparam>
+        /// <param name="eventSource">触发事件的对象</param>
+        /// <param name="eventData">事件关联的信息</param>
+        /// <returns>处理异步操作的Task</returns>
         Task TriggerAsync<TEventData>(object eventSource, TEventData eventData) where TEventData : IEventData;
 
         /// <summary>
-        /// Triggers an event asynchronously.
+        /// 异步触发事件
         /// </summary>
-        /// <param name="eventType">Event type</param>
-        /// <param name="eventData">Related data for the event</param>
-        /// <returns>The task to handle async operation</returns>
+        /// <param name="eventType">事件信息</param>
+        /// <param name="eventData">事件关联的信息</param>
+        /// <returns>处理异步操作的Task</returns>
         Task TriggerAsync(Type eventType, IEventData eventData);
 
         /// <summary>
-        /// Triggers an event asynchronously.
+        /// 异步触发事件
         /// </summary>
-        /// <param name="eventType">Event type</param>
-        /// <param name="eventSource">The object which triggers the event</param>
-        /// <param name="eventData">Related data for the event</param>
-        /// <returns>The task to handle async operation</returns>
+        /// <param name="eventType">事件信息</param>
+        /// <param name="eventSource">触发事件的对象</param>
+        /// <param name="eventData">事件关联的信息</param>
+        /// <returns>处理异步操作的Task</returns>
         Task TriggerAsync(Type eventType, object eventSource, IEventData eventData);
 
 
