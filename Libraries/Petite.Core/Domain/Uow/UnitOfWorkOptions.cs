@@ -12,7 +12,7 @@
 using System;
 using System.Transactions;
 
-namespace Petite.Data.Domain.Uow
+namespace Petite.Core.Domain.Uow
 {
     public class UnitOfWorkOptions
     {

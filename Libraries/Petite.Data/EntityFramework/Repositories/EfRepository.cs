@@ -15,7 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Petite.Core;
 using Petite.Core.Domain.Entities;
-using Petite.Data.Domain.Repository;
+using Petite.Core.Domain.Repository;
 
 namespace Petite.Data.EntityFramework.Repositories
 {

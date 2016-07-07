@@ -11,7 +11,7 @@
 
 
 
-namespace Petite.Data.Domain.Uow
+namespace Petite.Core.Domain.Uow
 {
     public interface ICurrentUnitOfWorkProvider
     {

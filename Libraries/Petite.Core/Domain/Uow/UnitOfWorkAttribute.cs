@@ -13,7 +13,7 @@ using System;
 using System.Reflection;
 using System.Transactions;
 
-namespace Petite.Data.Domain.Uow
+namespace Petite.Core.Domain.Uow
 {
     /// <summary>
     /// 这个特性表明声明的方法是原子的，应该考虑作为一个UOW

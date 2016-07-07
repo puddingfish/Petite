@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 
-namespace Petite.Data.Domain.Uow
+namespace Petite.Core.Domain.Uow
 {
     /// <summary>
     /// This handle is used for innet unit of work scopes.

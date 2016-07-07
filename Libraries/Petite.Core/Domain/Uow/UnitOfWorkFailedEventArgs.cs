@@ -12,7 +12,7 @@
 using System;
 
 
-namespace Petite.Data.Domain.Uow
+namespace Petite.Core.Domain.Uow
 {
     /// <summary>
     /// Used as event arguments on <see cref="IActiveUnitOfWork.Failed"/> event.

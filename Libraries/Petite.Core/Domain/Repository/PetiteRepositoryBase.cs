@@ -15,7 +15,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Petite.Core;
 
-namespace Petite.Data.Domain.Repository
+namespace Petite.Core.Domain.Repository
 {
     /// <summary>
     /// 实现<see cref="IRepository{TEntity, TPrimaryKey}"/>接口的基类

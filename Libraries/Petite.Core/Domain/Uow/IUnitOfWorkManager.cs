@@ -11,7 +11,7 @@
 
 using System.Transactions;
 
-namespace Petite.Data.Domain.Uow
+namespace Petite.Core.Domain.Uow
 {
     /// <summary>
     /// UOW管理器接口

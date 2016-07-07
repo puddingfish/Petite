@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using Petite.Core.Extension;
 
 
-namespace Petite.Data.Domain.Uow
+namespace Petite.Core.Domain.Uow
 {
     /// <summary>
     /// 所有Unit of work的基类

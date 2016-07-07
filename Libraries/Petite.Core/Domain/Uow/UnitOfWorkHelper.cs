@@ -13,7 +13,7 @@ using System;
 using System.Reflection;
 using Petite.Data.Domain.Repository;
 
-namespace Petite.Data.Domain.Uow
+namespace Petite.Core.Domain.Uow
 {
     internal static class UnitOfWorkHelper
     {

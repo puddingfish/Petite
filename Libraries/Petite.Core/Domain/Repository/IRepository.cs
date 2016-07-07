@@ -1,6 +1,6 @@
 ﻿using Petite.Core.Dependency;
 
-namespace Petite.Data.Domain.Repository
+namespace Petite.Core.Domain.Repository
 {
     public interface IRepository:ITransientDependency
     {

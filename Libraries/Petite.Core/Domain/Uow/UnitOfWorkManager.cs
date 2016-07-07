@@ -12,7 +12,7 @@
 using System.Transactions;
 using Castle.Windsor;
 
-namespace Petite.Data.Domain.Uow
+namespace Petite.Core.Domain.Uow
 {
     public class UnitOfWorkManager : IUnitOfWorkManager
     {

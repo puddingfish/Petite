@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using Castle.DynamicProxy;
 using Petite.Data.Threading;
 
-namespace Petite.Data.Domain.Uow
+namespace Petite.Core.Domain.Uow
 {
     internal class UnitOfWorkInterceptor:IInterceptor
     {

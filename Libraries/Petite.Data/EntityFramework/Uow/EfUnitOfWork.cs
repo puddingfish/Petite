@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using Castle.Core.Internal;
 using Castle.Windsor;
-using Petite.Data.Domain.Uow;
+using Petite.Core.Domain.Uow;
 
 namespace Petite.Data.EntityFramework.Uow
 {

@@ -15,7 +15,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Petite.Core;
 
-namespace Petite.Data.Domain.Repository
+namespace Petite.Core.Domain.Repository
 {
     public partial interface IRepository<TEntity, TPrimaryKey> : IRepository
         where TEntity : class, IEntity<TPrimaryKey>

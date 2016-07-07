@@ -10,11 +10,10 @@
 //======================================================================  
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
+using Petite.Core.Events.Factories;
+using Petite.Core.Events.Handlers;
+using Petite.Utils.Extensions;
 
 namespace Petite.Core.Events
 {

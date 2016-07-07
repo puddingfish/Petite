@@ -50,12 +50,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="Configuration\Startup\EventBusConfiguration.cs" />
     <Compile Include="Configuration\Startup\IEventBusConfiguration.cs" />
+    <Compile Include="Dependency\IIocResolver.cs" />
+    <Compile Include="Dependency\Installers\PetiteCoreInstaller.cs" />
     <Compile Include="Dependency\ITransientDependency.cs" />
     <Compile Include="Domain\Entities\ISoftDelete.cs" />
+    <Compile Include="Domain\Repository\IRepository.cs" />
+    <Compile Include="Domain\Repository\IRepositoryOfTEntityAndTPrimaryKey.cs" />
+    <Compile Include="Domain\Repository\PetiteRepositoryBase.cs" />
+    <Compile Include="Domain\Uow\IActiveUnitOfWork.cs" />
+    <Compile Include="Domain\Uow\ICurrentUnitOfWorkProvider.cs" />
+    <Compile Include="Domain\Uow\InnerUnitOfWorkCompleteHandle.cs" />
+    <Compile Include="Domain\Uow\IUnitOfWork.cs" />
+    <Compile Include="Domain\Uow\IUnitOfWorkCompleteHandle.cs" />
+    <Compile Include="Domain\Uow\IUnitOfWorkManager.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkAttribute.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkBase.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkFailedEventArgs.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkHelper.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkInterceptor.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkManager.cs" />
+    <Compile Include="Domain\Uow\UnitOfWorkOptions.cs" />
     <Compile Include="Events\Entities\EntityCreatedEvent.cs" />
     <Compile Include="Events\Entities\EntityDeletedEvent.cs" />
     <Compile Include="Events\Entities\EntityUpdatedEvent.cs" />
+    <Compile Include="Events\Entities\IEntityChangeEventHelper.cs" />
+    <Compile Include="Events\Entities\EntityChangeEventHelper.cs" />
     <Compile Include="Events\EventBus.cs" />
     <Compile Include="Events\EventBusInstaller.cs" />
     <Compile Include="Events\EventData.cs" />
@@ -70,17 +91,26 @@
     <Compile Include="Events\IEventBus.cs" />
     <Compile Include="Events\IEventData.cs" />
     <Compile Include="Events\IEventDataWithInheritableGenericArgument.cs" />
+    <Compile Include="Events\Entities\NullEntityChangeEventHelper.cs" />
+    <Compile Include="Events\NullEventBus.cs" />
     <Compile Include="Extension\EventHandlerExtensions.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Threading\AsyncHelper.cs" />
+    <Compile Include="Threading\InternalAsyncHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Caching\" />
-    <Folder Include="Data\" />
     <Folder Include="Plugins\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Petite.Utils\Petite.Utils.csproj">
+      <Project>{e2540cba-0440-4544-a72f-b34e6d609000}</Project>
+      <Name>Petite.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
