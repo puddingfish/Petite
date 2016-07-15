@@ -15,7 +15,7 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Transactions;
 using Castle.Core.Internal;
-using Castle.Windsor;
+using Petite.Core.Dependency;
 using Petite.Core.Domain.Uow;
 
 namespace Petite.Data.EntityFramework.Uow
@@ -25,17 +25,17 @@ namespace Petite.Data.EntityFramework.Uow
         #region fields
 
         protected readonly IDictionary<Type, DbContext> ActiveDbContexts;
-        protected IWindsorContainer IocContainer { get; private set; }
+        protected IIocResolver IocResolver { get; private set; }
         protected TransactionScope CurrentTransaction;
 
         #endregion
 
         #region ctors
 
-        public EfUnitOfWork(IWindsorContainer iocContainer)
+        public EfUnitOfWork(IIocResolver iocResolver)
             :base()
         {
-            IocContainer = iocContainer;
+            IocResolver = iocResolver;
             ActiveDbContexts = new Dictionary<Type, DbContext>();
         }
 
@@ -153,13 +153,13 @@ namespace Petite.Data.EntityFramework.Uow
 
         protected virtual TDbContext Resolve<TDbContext>()
         {
-            return IocContainer.Resolve<TDbContext>();
+            return IocResolver.Resolve<TDbContext>();
         }
 
         protected virtual void Release(DbContext dbContext)
         {
             dbContext.Dispose();
-            IocContainer.Release(dbContext);
+            IocResolver.Release(dbContext);
         }
 
         #endregion

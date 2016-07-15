@@ -71,28 +71,28 @@ namespace Petite.Core.Dependency
         #region methods
 
         /// <summary>
-        /// Adds a dependency registrar for conventional registration.
+        /// 添加一个依赖注入项
         /// </summary>
-        /// <param name="registrar">dependency registrar</param>
+        /// <param name="registrar">依赖注入</param>
         public void AddConventionalRegistrar(IConventionalDependencyRegistrar registrar)
         {
             _conventionalRegistrars.Add(registrar);
         }
 
         /// <summary>
-        /// Registers types of given assembly by all conventional registrars. See <see cref="AddConventionalRegistrar"/> method.
+        /// 注册Assembly，参见 <see cref="AddConventionalRegistrar"/> 方法.
         /// </summary>
-        /// <param name="assembly">Assembly to register</param>
+        /// <param name="assembly">需要注册的程序集</param>
         public void RegisterAssemblyByConvention(Assembly assembly)
         {
             RegisterAssemblyByConvention(assembly, new ConventionalRegistrationConfig());
         }
 
         /// <summary>
-        /// Registers types of given assembly by all conventional registrars. See <see cref="AddConventionalRegistrar"/> method.
+        /// 注册Assembly,参见 <see cref="AddConventionalRegistrar"/> 方法.
         /// </summary>
-        /// <param name="assembly">Assembly to register</param>
-        /// <param name="config">Additional configuration</param>
+        /// <param name="assembly">需要注册的程序集</param>
+        /// <param name="config">附加配置</param>
         public void RegisterAssemblyByConvention(Assembly assembly, ConventionalRegistrationConfig config)
         {
             var context = new ConventionalRegistrationContext(assembly, this, config);
@@ -109,31 +109,31 @@ namespace Petite.Core.Dependency
         }
 
         /// <summary>
-        /// Registers a type as self registration.
+        /// 自注册一个类型.
         /// </summary>
-        /// <typeparam name="TType">Type of the class</typeparam>
-        /// <param name="lifeStyle">Lifestyle of the objects of this type</param>
+        /// <typeparam name="TType">class类型</typeparam>
+        /// <param name="lifeStyle">对象生命周期</param>
         public void Register<TType>(DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton) where TType : class
         {
             IocContainer.Register(ApplyLifestyle(Component.For<TType>(), lifeStyle));
         }
 
         /// <summary>
-        /// Registers a type as self registration.
+        /// 自注册一个类型
         /// </summary>
-        /// <param name="type">Type of the class</param>
-        /// <param name="lifeStyle">Lifestyle of the objects of this type</param>
+        /// <param name="type">class类型</param>
+        /// <param name="lifeStyle">对象生命周期</param>
         public void Register(Type type, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
         {
             IocContainer.Register(ApplyLifestyle(Component.For(type), lifeStyle));
         }
 
         /// <summary>
-        /// Registers a type with it's implementation.
+        /// 使用TType的实现类注册
         /// </summary>
-        /// <typeparam name="TType">Registering type</typeparam>
-        /// <typeparam name="TImpl">The type that implements <see cref="TType"/></typeparam>
-        /// <param name="lifeStyle">Lifestyle of the objects of this type</param>
+        /// <typeparam name="TType">注册类型</typeparam>
+        /// <typeparam name="TImpl">对应的实现类<see cref="TType"/></typeparam>
+        /// <param name="lifeStyle">对应对象的生命周期</param>
         public void Register<TType, TImpl>(DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
             where TType : class
             where TImpl : class, TType
@@ -142,94 +142,94 @@ namespace Petite.Core.Dependency
         }
 
         /// <summary>
-        /// Registers a class as self registration.
+        /// 自注册一个类型
         /// </summary>
-        /// <param name="type">Type of the class</param>
-        /// <param name="impl">The type that implements <paramref name="type"/></param>
-        /// <param name="lifeStyle">Lifestyle of the objects of this type</param>
+        /// <param name="type">class类型</param>
+        /// <param name="impl">对应类型实现类<paramref name="type"/></param>
+        /// <param name="lifeStyle">对应对象的生命周期</param>
         public void Register(Type type, Type impl, DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
         {
             IocContainer.Register(ApplyLifestyle(Component.For(type, impl).ImplementedBy(impl), lifeStyle));
         }
 
         /// <summary>
-        /// Checks whether given type is registered before.
+        /// 检测Type是否已经注册过
         /// </summary>
-        /// <param name="type">Type to check</param>
+        /// <param name="type">检测的Type</param>
         public bool IsRegistered(Type type)
         {
             return IocContainer.Kernel.HasComponent(type);
         }
 
         /// <summary>
-        /// Checks whether given type is registered before.
+        /// 检测Type是否已经注册过
         /// </summary>
-        /// <typeparam name="TType">Type to check</typeparam>
+        /// <typeparam name="TType">检测的Type</typeparam>
         public bool IsRegistered<TType>()
         {
             return IocContainer.Kernel.HasComponent(typeof(TType));
         }
 
         /// <summary>
-        /// Gets an object from IOC container.
-        /// Returning object must be Released (see <see cref="IIocResolver.Release"/>) after usage.
+        /// 从IOC容器获取一个对象
+        /// 返回的对象必须在使用后release (见 <see cref="IIocResolver.Release"/>) .
         /// </summary> 
-        /// <typeparam name="T">Type of the object to get</typeparam>
-        /// <returns>The instance object</returns>
+        /// <typeparam name="T">需要获取的对象类型</typeparam>
+        /// <returns>对象实例</returns>
         public T Resolve<T>()
         {
             return IocContainer.Resolve<T>();
         }
 
         /// <summary>
-        /// Gets an object from IOC container.
-        /// Returning object must be Released (see <see cref="Release"/>) after usage.
+        /// 从IOC容器获取一个对象
+        /// 返回的对象必须在使用后release (见 <see cref="IIocResolver.Release"/>) .
         /// </summary> 
-        /// <typeparam name="T">Type of the object to cast</typeparam>
-        /// <param name="type">Type of the object to resolve</param>
-        /// <returns>The object instance</returns>
+        /// <typeparam name="T">转换的对象类型</typeparam>
+        /// <param name="type">获取的对象类型</param>
+        /// <returns>对象实例</returns>
         public T Resolve<T>(Type type)
         {
             return (T)IocContainer.Resolve(type);
         }
 
         /// <summary>
-        /// Gets an object from IOC container.
-        /// Returning object must be Released (see <see cref="IIocResolver.Release"/>) after usage.
+        /// 从IOC容器获取一个对象
+        /// 返回的对象必须在使用后release (见 <see cref="IIocResolver.Release"/>) .
         /// </summary> 
-        /// <typeparam name="T">Type of the object to get</typeparam>
-        /// <param name="argumentsAsAnonymousType">Constructor arguments</param>
-        /// <returns>The instance object</returns>
+        /// <typeparam name="T">需要获取的对象类型</typeparam>
+        /// <param name="argumentsAsAnonymousType">构造函数参数</param>
+        /// <returns>对象实例</returns>
         public T Resolve<T>(object argumentsAsAnonymousType)
         {
             return IocContainer.Resolve<T>(argumentsAsAnonymousType);
         }
 
         /// <summary>
-        /// Gets an object from IOC container.
-        /// Returning object must be Released (see <see cref="IIocResolver.Release"/>) after usage.
+        /// 从IOC容器获取一个对象
+        /// 返回的对象必须在使用后release (见 <see cref="IIocResolver.Release"/>) .
         /// </summary> 
-        /// <param name="type">Type of the object to get</param>
-        /// <returns>The instance object</returns>
+        /// <param name="type">需要获取的对象类型</param>
+        /// <returns>对象实例</returns>
         public object Resolve(Type type)
         {
             return IocContainer.Resolve(type);
         }
 
         /// <summary>
-        /// Gets an object from IOC container.
-        /// Returning object must be Released (see <see cref="IIocResolver.Release"/>) after usage.
+        /// 从IOC容器获取一个对象
+        /// 返回的对象必须在使用后release (见 <see cref="IIocResolver.Release"/>) .
         /// </summary> 
-        /// <param name="type">Type of the object to get</param>
-        /// <param name="argumentsAsAnonymousType">Constructor arguments</param>
-        /// <returns>The instance object</returns>
+        /// <param name="type">需要获取的对象类型</param>
+        /// <param name="argumentsAsAnonymousType">构造函数参数</param>
+        /// <returns>对象实例</returns>
         public object Resolve(Type type, object argumentsAsAnonymousType)
         {
             return IocContainer.Resolve(type, argumentsAsAnonymousType);
         }
 
         /// <summary>
-        /// Releases a pre-resolved object. See Resolve methods.
+        /// 释放之前获取的对象<see cref="Resolve"/> 
         /// </summary>
         /// <param name="obj">Object to be released</param>
         public void Release(object obj)

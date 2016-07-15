@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\ApplicationService.cs" />
+    <Compile Include="Application\IApplicationService.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Configuration\ConventionalRegistrationConfig.cs" />
     <Compile Include="Configuration\DictionaryBasedConfig.cs" />
@@ -66,6 +68,7 @@
     <Compile Include="Dependency\IocManager.cs" />
     <Compile Include="Dependency\ITransientDependency.cs" />
     <Compile Include="Domain\Entities\ISoftDelete.cs" />
+    <Compile Include="Domain\Entities\MultiTenancy\MultiTenancySides.cs" />
     <Compile Include="Domain\Repository\IRepository.cs" />
     <Compile Include="Domain\Repository\IRepositoryOfTEntityAndTPrimaryKey.cs" />
     <Compile Include="Domain\Repository\PetiteRepositoryBase.cs" />
@@ -107,12 +110,15 @@
     <Compile Include="Extension\EventHandlerExtensions.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runtime\Session\ClaimsPetiteSession.cs" />
+    <Compile Include="Runtime\Session\IPetiteSession.cs" />
     <Compile Include="Threading\AsyncHelper.cs" />
     <Compile Include="Threading\InternalAsyncHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Caching\" />
+    <Folder Include="Domain\Entities\Authorization\" />
     <Folder Include="Plugins\" />
+    <Folder Include="Runtime\Caching\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

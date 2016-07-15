@@ -10,7 +10,7 @@
 //======================================================================  
 
 using System.Transactions;
-using Castle.Windsor;
+using Petite.Core.Dependency;
 
 namespace Petite.Core.Domain.Uow
 {
@@ -18,7 +18,7 @@ namespace Petite.Core.Domain.Uow
     {
         #region fields
 
-        private readonly IWindsorContainer _windsorContainer;
+        private readonly IIocResolver _iocResolver;
         private readonly ICurrentUnitOfWorkProvider _currentUnitOfWorkProvider;
         public IActiveUnitOfWork Current => _currentUnitOfWorkProvider.Current;
 
@@ -26,10 +26,10 @@ namespace Petite.Core.Domain.Uow
 
         #region ctors
 
-        public UnitOfWorkManager(ICurrentUnitOfWorkProvider currentUnitOfWorkProvider, IWindsorContainer windsorContainer)
+        public UnitOfWorkManager(ICurrentUnitOfWorkProvider currentUnitOfWorkProvider, IIocResolver iocResolver)
         {
             _currentUnitOfWorkProvider = currentUnitOfWorkProvider;
-            _windsorContainer = windsorContainer;
+            _iocResolver = iocResolver;
         }
 
         #endregion
@@ -48,7 +48,7 @@ namespace Petite.Core.Domain.Uow
                 return new InnerUnitOfWorkCompleteHandle();
             }
 
-            var uow = _windsorContainer.Resolve<IUnitOfWork>();
+            var uow = _iocResolver.Resolve<IUnitOfWork>();
 
             uow.Completed += (sender, args) =>
             {
@@ -62,7 +62,7 @@ namespace Petite.Core.Domain.Uow
 
             uow.Disposed += (sender, args) =>
             {
-                _windsorContainer.Release(uow);
+                _iocResolver.Release(uow);
             };
 
             uow.Begin(options);

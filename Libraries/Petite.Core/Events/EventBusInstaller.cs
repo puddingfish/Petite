@@ -14,6 +14,7 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using Petite.Core.Configuration.Startup;
+using Petite.Core.Dependency;
 using Petite.Core.Events.Factories;
 using Petite.Core.Events.Handlers;
 
@@ -23,7 +24,7 @@ namespace Petite.Core.Events
     {
         #region fields
 
-        public readonly IWindsorContainer _iocContainer;
+        public readonly IIocResolver _iocResolver;
         private readonly IEventBusConfiguration _eventBusConfiguration;
         private IEventBus _eventBus;
 
@@ -31,10 +32,10 @@ namespace Petite.Core.Events
 
         #region ctors
 
-        public EventBusInstaller(IWindsorContainer iocContainer)
+        public EventBusInstaller(IIocResolver iocResolver)
         {
-            _iocContainer = iocContainer;
-            _eventBusConfiguration = _iocContainer.Resolve<IEventBusConfiguration>();
+            _iocResolver = iocResolver;
+            _eventBusConfiguration = _iocResolver.Resolve<IEventBusConfiguration>();
         }
 
         #endregion
@@ -82,7 +83,7 @@ namespace Petite.Core.Events
                 var genericArgs = @interface.GetGenericArguments();
                 if (genericArgs.Length == 1)
                 {
-                    _eventBus.Register(genericArgs[0], new IocHandlerFactory(_iocContainer, handler.ComponentModel.Implementation));
+                    _eventBus.Register(genericArgs[0], new IocHandlerFactory(_iocResolver, handler.ComponentModel.Implementation));
                 }
             }
         }

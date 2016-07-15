@@ -10,7 +10,7 @@
 //======================================================================  
 
 using System;
-using Castle.Windsor;
+using Petite.Core.Dependency;
 using Petite.Core.Events.Handlers;
 
 namespace Petite.Core.Events.Factories
@@ -21,16 +21,16 @@ namespace Petite.Core.Events.Factories
 
         public Type HandlerType { get; private set; }
 
-        private readonly IWindsorContainer _iocContainer;
+        private readonly IIocResolver _iocResolver;
 
         #endregion
 
         #region ctors
 
-        public IocHandlerFactory(IWindsorContainer iocContainer,Type handlerType)
+        public IocHandlerFactory(IIocResolver iocResolver,Type handlerType)
         {
             HandlerType = handlerType;
-            _iocContainer = iocContainer;
+            _iocResolver = iocResolver;
         }
 
         #endregion
@@ -43,7 +43,7 @@ namespace Petite.Core.Events.Factories
         /// <returns></returns>
         public IEventHandler GetHandler()
         {
-            return (IEventHandler)_iocContainer.Resolve(HandlerType);
+            return (IEventHandler)_iocResolver.Resolve(HandlerType);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Petite.Core.Events.Factories
         /// <param name="handler"></param>
         public void ReleaseHandler(IEventHandler handler)
         {
-            _iocContainer.Release(handler);
+            _iocResolver.Release(handler);
         }
 
         #endregion
