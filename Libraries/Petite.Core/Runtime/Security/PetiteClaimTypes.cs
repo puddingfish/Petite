@@ -2,19 +2,19 @@
 //  
 //        Copyright (C) 2016 哈分享网      
 //        All rights reserved    
-//        Filename :IApplicationService 
+//        Filename :PetiteClaimsType 
 //        Description :    
-//        Created by Wsy at 2016/7/15 16:33:27
+//        Created by Wsy at 2016/7/16 16:37:45
 //        http://www.hafenxiang.com 
 //  
 //======================================================================  
 
-using Petite.Core.Dependency;
 
-namespace Petite.Core.Application
+
+namespace Petite.Core.Runtime.Security
 {
-    public interface IApplicationService:ITransientDependency
+    public static class PetiteClaimTypes
     {
-
+        public const string TenantId = "http://www.hafenxiang.com/identity/claims/tenantId";
     }
 }

@@ -11,10 +11,17 @@
 
 
 
-namespace Petite.Core.Application
-{
-    public class ApplicationService:IApplicationService
-    {
+using Petite.Core.Runtime.Session;
 
+namespace Petite.Services.Application
+{
+    public class ApplicationService:PetiteServiceBase,IApplicationService
+    {
+        public IPetiteSession PetiteSession { get; set; }
+
+        public ApplicationService()
+        {
+            PetiteSession = NullPetiteSession.Instance;
+        }
     }
 }
