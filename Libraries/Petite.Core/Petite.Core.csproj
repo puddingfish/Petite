@@ -69,6 +69,7 @@
     <Compile Include="Dependency\IocManager.cs" />
     <Compile Include="Dependency\ITransientDependency.cs" />
     <Compile Include="Domain\Entities\ISoftDelete.cs" />
+    <Compile Include="Domain\Entities\Localization\LanguageInfo.cs" />
     <Compile Include="Domain\Entities\MultiTenancy\MultiTenancySides.cs" />
     <Compile Include="Domain\Repository\IRepository.cs" />
     <Compile Include="Domain\Repository\IRepositoryOfTEntityAndTPrimaryKey.cs" />
@@ -121,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\Entities\Authorization\" />
+    <Folder Include="Localization\" />
     <Folder Include="Plugins\" />
     <Folder Include="Runtime\Caching\" />
   </ItemGroup>
