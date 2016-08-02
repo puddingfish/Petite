@@ -39,6 +39,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Collections.Immutable.1.2.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
@@ -56,7 +60,11 @@
     <Compile Include="Configuration\ISettings.cs" />
     <Compile Include="Configuration\Startup\EventBusConfiguration.cs" />
     <Compile Include="Configuration\Startup\IEventBusConfiguration.cs" />
+    <Compile Include="Configuration\Startup\ILocalizationConfiguration.cs" />
+    <Compile Include="Configuration\Startup\ILocalizationSourceList.cs" />
     <Compile Include="Configuration\Startup\IMultiTenancyConfig.cs" />
+    <Compile Include="Configuration\Startup\LocalizationConfiguration.cs" />
+    <Compile Include="Configuration\Startup\LocalizationSourceList.cs" />
     <Compile Include="Configuration\Startup\MultiTenancyConfig.cs" />
     <Compile Include="Dependency\ConventionalRegistrationContext.cs" />
     <Compile Include="Dependency\DependencyLifeStyle.cs" />
@@ -110,7 +118,24 @@
     <Compile Include="Events\NullEventBus.cs" />
     <Compile Include="Extension\DictionaryExtensions.cs" />
     <Compile Include="Extension\EventHandlerExtensions.cs" />
+    <Compile Include="Extension\StringExtensions.cs" />
+    <Compile Include="Extension\XmlNodeExtensions.cs" />
     <Compile Include="IEntity.cs" />
+    <Compile Include="Localization\Dictionaries\DictionaryBasedLocalizationSource.cs" />
+    <Compile Include="Localization\Dictionaries\IDictionaryBasedLocalizationSource.cs" />
+    <Compile Include="Localization\Dictionaries\ILocalizationDictionary.cs" />
+    <Compile Include="Localization\Dictionaries\ILocalizationDictionaryProvider.cs" />
+    <Compile Include="Localization\Dictionaries\LocalizationDictionary.cs" />
+    <Compile Include="Localization\Dictionaries\LocalizationDictionaryProviderBase.cs" />
+    <Compile Include="Localization\Dictionaries\Xml\XmlFileLocalizationDictionaryProvider.cs" />
+    <Compile Include="Localization\Dictionaries\Xml\XmlLocalizationDictionary.cs" />
+    <Compile Include="Localization\ILanguageManager.cs" />
+    <Compile Include="Localization\LanguageManager.cs" />
+    <Compile Include="Localization\LocalizationSourceHelper.cs" />
+    <Compile Include="Localization\LocalizedString.cs" />
+    <Compile Include="Localization\Sources\ILocalizationSource.cs" />
+    <Compile Include="Localization\Sources\LocalizationSourceExtensionInfo.cs" />
+    <Compile Include="Localization\Sources\LocalizationSourceExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runtime\Security\PetiteClaimTypes.cs" />
     <Compile Include="Runtime\Session\ClaimsPetiteSession.cs" />
@@ -122,7 +147,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\Entities\Authorization\" />
-    <Folder Include="Localization\" />
     <Folder Include="Plugins\" />
     <Folder Include="Runtime\Caching\" />
   </ItemGroup>
