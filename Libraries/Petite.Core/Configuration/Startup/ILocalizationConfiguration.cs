@@ -17,34 +17,30 @@ namespace Petite.Core.Configuration.Startup
     public interface ILocalizationConfiguration
     {
         /// <summary>
-        /// Used to set languages available for this application.
+        /// 设置当前程序的可用语言
         /// </summary>
         IList<LanguageInfo> Languages { get; }
 
         /// <summary>
-        /// List of localization sources.
+        /// 本地化资源
         /// </summary>
         ILocalizationSourceList Sources { get; }
 
         /// <summary>
-        /// Used to enable/disable localization system.
+        /// 设置是否启用本地化系统
         /// Default: true.
         /// </summary>
         bool IsEnabled { get; set; }
 
         /// <summary>
-        /// If this is set to true, the given text (name) is returned
-        /// if not found in the localization source. That prevent exceptions if
-        /// given name is not defined in the localization sources.
-        /// Also writes a warning log.
+        /// 如果设置为true,在资源文件中未找到将返回给定的text
         /// Default: true.
         /// </summary>
         bool ReturnGivenTextIfNotFound { get; set; }
 
         /// <summary>
-        /// It returns the given text by wrapping with [ and ] chars
-        /// if not found in the localization source.
-        /// This is considered only if <see cref="ReturnGivenTextIfNotFound"/> is true.
+        /// 如果未找到将返回使用[]包裹的给定text
+        /// <see cref="ReturnGivenTextIfNotFound"/> 必须设置为true才有效.
         /// Default: true.
         /// </summary>
         bool WrapGivenTextIfNotFound { get; set; }

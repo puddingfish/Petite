@@ -26,7 +26,7 @@ namespace Petite.Core.Domain.Entities.MultiTenancy
         Tenant=1,
 
         /// <summary>
-        /// 平台所有者
+        /// 服务提供商
         /// </summary>
         Host=2
     }

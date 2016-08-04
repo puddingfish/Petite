@@ -12,8 +12,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using Petite.Core.Dependency;
 using Petite.Core.Domain.Entities.Localization;
 
@@ -25,13 +24,15 @@ namespace Petite.Core.Localization
 
         public LanguageInfo CurrentLanguage { get { return GetCurrentLanguage(); } }
 
+        private readonly ILanguageProvider _languageProvider;
+
         #endregion
 
         #region ctors
 
-        public LanguageManager()
+        public LanguageManager(ILanguageProvider languageProvider)
         {
-
+            _languageProvider = languageProvider;
         }
 
         #endregion
@@ -40,12 +41,42 @@ namespace Petite.Core.Localization
 
         private LanguageInfo GetCurrentLanguage()
         {
-            throw new NotImplementedException();
+            var languages = _languageProvider.GetLanguages();
+            if(languages.Count<=0)
+            {
+                throw new Exception("未定义任何语言");
+            }
+
+            //按照当前culture精确查找
+            var currentCultureName = Thread.CurrentThread.CurrentUICulture.Name;
+            var currentLanguage = languages.FirstOrDefault(l => l.Name == currentCultureName);
+            if(currentLanguage!=null)
+            {
+                return currentLanguage;
+            }
+
+            //精确查找不到时，查找最匹配的语言
+            currentLanguage = languages.FirstOrDefault(l => currentCultureName.StartsWith(l.Name));
+            if(currentLanguage!=null)
+            {
+                return currentLanguage;
+            }
+
+            //如果还未匹配到，则尝试获取默认语言
+            currentLanguage = languages.FirstOrDefault(l => l.IsDefault);
+            if(currentLanguage!=null)
+            {
+                return currentLanguage;
+            }
+
+            //返回第一个语言
+            return languages[0];
+
         }
 
         public IReadOnlyList<LanguageInfo> GetLanguages()
         {
-            throw new NotImplementedException();
+            return _languageProvider.GetLanguages();
         }
 
         #endregion

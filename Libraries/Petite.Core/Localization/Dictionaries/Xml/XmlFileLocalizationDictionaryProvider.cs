@@ -10,29 +10,25 @@
 //======================================================================  
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Petite.Core.Localization.Dictionaries.Xml
 {
-    public class XmlFileLocalizationDictionaryProvider:LocalizationDictionaryProviderBase
+    public class XmlFileLocalizationDictionaryProvider : LocalizationDictionaryProviderBase
     {
         private readonly string _directoryPath;
 
         /// <summary>
-        /// Creates a new <see cref="XmlFileLocalizationDictionaryProvider"/>.
+        /// 创建新的<see cref="XmlFileLocalizationDictionaryProvider"/>.
         /// </summary>
-        /// <param name="directoryPath">Path of the dictionary that contains all related XML files</param>
+        /// <param name="directoryPath">xml文件路径</param>
         public XmlFileLocalizationDictionaryProvider(string directoryPath)
         {
-            if (!Path.IsPathRooted(directoryPath))
-            {
-                directoryPath = Path.Combine(XmlLocalizationSource.RootDirectoryOfApplication, directoryPath);
-            }
+            //if (!Path.IsPathRooted(directoryPath))
+            //{
+            //    directoryPath = Path.Combine(XmlLocalizationSource.RootDirectoryOfApplication, directoryPath);
+            //}
 
             _directoryPath = directoryPath;
         }
@@ -46,7 +42,7 @@ namespace Petite.Core.Localization.Dictionaries.Xml
                 var dictionary = CreateXmlLocalizationDictionary(fileName);
                 if (Dictionaries.ContainsKey(dictionary.CultureInfo.Name))
                 {
-                    throw new Exception(sourceName + " source contains more than one dictionary for the culture: " + dictionary.CultureInfo.Name);
+                    throw new Exception(sourceName + " 包含多个 " + dictionary.CultureInfo.Name + " 的字典");
                 }
 
                 Dictionaries[dictionary.CultureInfo.Name] = dictionary;
@@ -55,7 +51,7 @@ namespace Petite.Core.Localization.Dictionaries.Xml
                 {
                     if (DefaultDictionary != null)
                     {
-                        throw new Exception("Only one default localization dictionary can be for source: " + sourceName);
+                        throw new Exception("每个资源只能有一个本地化字典: " + sourceName);
                     }
 
                     DefaultDictionary = dictionary;

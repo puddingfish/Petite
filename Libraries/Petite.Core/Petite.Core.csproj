@@ -53,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authorization\IPermissionDefinitionContext.cs" />
+    <Compile Include="Authorization\PermissionDefinitionContextBase.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Configuration\ConventionalRegistrationConfig.cs" />
     <Compile Include="Configuration\DictionaryBasedConfig.cs" />
@@ -76,6 +78,8 @@
     <Compile Include="Dependency\Installers\PetiteCoreInstaller.cs" />
     <Compile Include="Dependency\IocManager.cs" />
     <Compile Include="Dependency\ITransientDependency.cs" />
+    <Compile Include="Domain\Entities\Authorization\Permission.cs" />
+    <Compile Include="Domain\Entities\Authorization\PermissionDictionary.cs" />
     <Compile Include="Domain\Entities\ISoftDelete.cs" />
     <Compile Include="Domain\Entities\Localization\LanguageInfo.cs" />
     <Compile Include="Domain\Entities\MultiTenancy\MultiTenancySides.cs" />
@@ -130,12 +134,20 @@
     <Compile Include="Localization\Dictionaries\Xml\XmlFileLocalizationDictionaryProvider.cs" />
     <Compile Include="Localization\Dictionaries\Xml\XmlLocalizationDictionary.cs" />
     <Compile Include="Localization\ILanguageManager.cs" />
+    <Compile Include="Localization\ILanguageProvider.cs" />
+    <Compile Include="Localization\ILocalizableString.cs" />
+    <Compile Include="Localization\ILocalizationManager.cs" />
     <Compile Include="Localization\LanguageManager.cs" />
+    <Compile Include="Localization\LanguageProvider.cs" />
+    <Compile Include="Localization\LocalizableString.cs" />
+    <Compile Include="Localization\LocalizationManager.cs" />
     <Compile Include="Localization\LocalizationSourceHelper.cs" />
     <Compile Include="Localization\LocalizedString.cs" />
+    <Compile Include="Localization\NullLocalizationManager.cs" />
     <Compile Include="Localization\Sources\ILocalizationSource.cs" />
     <Compile Include="Localization\Sources\LocalizationSourceExtensionInfo.cs" />
     <Compile Include="Localization\Sources\LocalizationSourceExtensions.cs" />
+    <Compile Include="Localization\Sources\NullLocalizationSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runtime\Security\PetiteClaimTypes.cs" />
     <Compile Include="Runtime\Session\ClaimsPetiteSession.cs" />
@@ -146,7 +158,7 @@
     <Compile Include="Threading\InternalAsyncHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Domain\Entities\Authorization\" />
+    <Folder Include="Authorization\Interceptors\" />
     <Folder Include="Plugins\" />
     <Folder Include="Runtime\Caching\" />
   </ItemGroup>

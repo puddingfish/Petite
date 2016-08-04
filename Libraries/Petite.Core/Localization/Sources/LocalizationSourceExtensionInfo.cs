@@ -9,16 +9,31 @@
 //  
 //======================================================================  
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using Petite.Core.Localization.Dictionaries;
 
 namespace Petite.Core.Localization.Sources
 {
     public class LocalizationSourceExtensionInfo
     {
+        /// <summary>
+        /// 资源名称
+        /// </summary>
+        public string SourceName { get; private set; }
+
+        /// <summary>
+        /// 扩展字典
+        /// </summary>
+        public ILocalizationDictionaryProvider DictionaryProvider { get; private set; }
+
+        /// <summary>
+        /// <see cref="LocalizationSourceExtensionInfo"/> 构造函数
+        /// </summary>
+        /// <param name="sourceName">资源名称</param>
+        /// <param name="dictionaryProvider">扩展字典集合</param>
+        public LocalizationSourceExtensionInfo(string sourceName, ILocalizationDictionaryProvider dictionaryProvider)
+        {
+            SourceName = sourceName;
+            DictionaryProvider = dictionaryProvider;
+        }
     }
 }
