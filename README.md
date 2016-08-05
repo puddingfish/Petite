@@ -1,2 +1,14 @@
 # Petite
-一个简单的框架，用来学习的，参考ABP及Osharp
+一个简单的框架，用来学习的，参考ABP
+摘取ABP中的UnitOfWork
+摘取ABP中的Localization
+摘取ABP中的Authorization
+摘取ABP中的IOC
+摘取ABP中的Events
+摘取ABP中的Session管理
+摘取Nopcommerce中EntityTypeConfiguration
+摘取Nopcommerce中的Plugin机制
+摘取Nopcommerce中的WebFramework
+等等。
+通过重构框架的方法学习ABP及Nopcommerce，并了解框架搭建所需的知识、技术。
+本框架中的代码大部分来自ABP及Nopcommerce。切勿用于商业用途。
