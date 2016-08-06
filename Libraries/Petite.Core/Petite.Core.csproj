@@ -53,14 +53,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authorization\AuthorizationProvider.cs" />
+    <Compile Include="Authorization\IPermissionChecker.cs" />
     <Compile Include="Authorization\IPermissionDefinitionContext.cs" />
+    <Compile Include="Authorization\IPermissionManager.cs" />
+    <Compile Include="Authorization\NullPermissionChecker.cs" />
+    <Compile Include="Authorization\PermissionCheckerExtensions.cs" />
     <Compile Include="Authorization\PermissionDefinitionContextBase.cs" />
+    <Compile Include="Authorization\PermissionManager.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Configuration\ConventionalRegistrationConfig.cs" />
     <Compile Include="Configuration\DictionaryBasedConfig.cs" />
     <Compile Include="Configuration\IDictionaryBasedConfig.cs" />
+    <Compile Include="Dependency\DisposableDependencyObjectWrapperOfT.cs" />
+    <Compile Include="Dependency\IDisposableDependencyObjectWrapper.cs" />
     <Compile Include="Configuration\ISettings.cs" />
     <Compile Include="Configuration\Startup\EventBusConfiguration.cs" />
+    <Compile Include="Configuration\Startup\IAuthorizationConfiguration.cs" />
     <Compile Include="Configuration\Startup\IEventBusConfiguration.cs" />
     <Compile Include="Configuration\Startup\ILocalizationConfiguration.cs" />
     <Compile Include="Configuration\Startup\ILocalizationSourceList.cs" />
@@ -72,12 +81,17 @@
     <Compile Include="Dependency\DependencyLifeStyle.cs" />
     <Compile Include="Dependency\IConventionalDependencyRegistrar.cs" />
     <Compile Include="Dependency\IConventionalRegistrationContext.cs" />
+    <Compile Include="Dependency\IDisposableDependencyObjectWrapperOfT.cs" />
     <Compile Include="Dependency\IIocManager.cs" />
     <Compile Include="Dependency\IIocRegistrar.cs" />
     <Compile Include="Dependency\IIocResolver.cs" />
     <Compile Include="Dependency\Installers\PetiteCoreInstaller.cs" />
     <Compile Include="Dependency\IocManager.cs" />
+    <Compile Include="Dependency\IocRegistrarExtensions.cs" />
+    <Compile Include="Dependency\IocResolverExtensions.cs" />
+    <Compile Include="Dependency\ISingletonDependency.cs" />
     <Compile Include="Dependency\ITransientDependency.cs" />
+    <Compile Include="Dependency\SingletonDependency.cs" />
     <Compile Include="Domain\Entities\Authorization\Permission.cs" />
     <Compile Include="Domain\Entities\Authorization\PermissionDictionary.cs" />
     <Compile Include="Domain\Entities\ISoftDelete.cs" />
@@ -121,8 +135,11 @@
     <Compile Include="Events\Entities\NullEntityChangeEventHelper.cs" />
     <Compile Include="Events\NullEventBus.cs" />
     <Compile Include="Extension\DictionaryExtensions.cs" />
+    <Compile Include="Extension\EnumerableExtensions.cs" />
     <Compile Include="Extension\EventHandlerExtensions.cs" />
+    <Compile Include="Extension\ITypeList.cs" />
     <Compile Include="Extension\StringExtensions.cs" />
+    <Compile Include="Extension\TypeList.cs" />
     <Compile Include="Extension\XmlNodeExtensions.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Localization\Dictionaries\DictionaryBasedLocalizationSource.cs" />
